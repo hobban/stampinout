@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stämpelklocka</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-gray-100 h-screen flex items-center justify-center">
+    <div class="w-full max-w-lg bg-white p-6 rounded-lg shadow-md text-center">
+        <h1 class="text-2xl font-bold mb-6">Stämpelklocka</h1>
+
+        <div class="space-y-4">
+            <button id="stampInBtn" class="btn-large bg-green-500 hover:bg-green-600">Stämpla in</button>
+            <button id="stampOutBtn" class="btn-large bg-red-500 hover:bg-red-600 hidden">Stämpla ut</button>
+        </div>
+
+        <!-- Lunchräknare -->
+        <div class="mt-4">
+            <h3 class="text-lg font-semibold">Lunchräknare:</h3>
+            <div class="flex justify-center items-center space-x-3">
+                <button id="decreaseLunchBtn" class="btn-circle bg-red-500 hover:bg-red-600">-</button>
+                <span id="lunchCount" class="text-lg font-semibold">0</span>
+                <button id="increaseLunchBtn" class="btn-circle bg-green-500 hover:bg-green-600">+</button>
+            </div>
+        </div>
+
+        <h2 class="text-lg font-semibold mt-6">Arbetade pass:</h2>
+        <ul id="workLog" class="mt-2 space-y-2"></ul>
+
+        <h3 class="text-lg font-semibold mt-6">Totalt arbetade timmar: <span id="totalHours">0</span> h</h3>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

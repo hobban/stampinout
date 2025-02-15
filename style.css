@@ -1,0 +1,64 @@
+
+body {
+    background-color: rgb(23, 23, 23) !important;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+}
+
+
+h1 {
+    font-size: 2rem !important;
+    font-weight: bold;
+    color: white !important;
+    margin-bottom: 1rem !important;
+    text-align: center;
+}
+
+
+.max-w-lg {
+    background-color: rgb(33, 33, 33) !important;
+    padding: 2rem;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 500px;
+    color: white !important;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.btn-large {
+    width: 100%;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: white;
+    border-radius: 14px;
+    padding: 16px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: all 0.2s ease-in-out;
+}
+
+.btn-circle {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    line-height: 1;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+#workLog {
+    max-height: 60vh;
+    overflow-y: auto;
+    width: 100%;
+}
