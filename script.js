@@ -34,6 +34,18 @@ let workSessions = JSON.parse(localStorage.getItem("workSessions")) || [];
 let isWorking = localStorage.getItem("isWorking") === "true";
 let startTime = localStorage.getItem("startTime") ? new Date(localStorage.getItem("startTime")) : null;
 
+function formatTime(minutes) {
+    if (minutes < 1) {
+        return "0 min";
+    } else if (minutes < 60) {
+        return `${minutes} min`;
+    } else {
+        let hours = Math.floor(minutes / 60);
+        let remainingMinutes = minutes % 60;
+        return remainingMinutes > 0 ? `${hours}h ${remainingMinutes} min` : `${hours}h`;
+    }
+}
+
 function updateUI() {
     workLog.innerHTML = "";
     let totalMinutes = 0;
@@ -49,14 +61,19 @@ function updateUI() {
         listItem.classList.add("log-item", "flex", "justify-between", "items-center");
 
         listItem.innerHTML = `
-            <span>${start.toLocaleString()} - ${end ? end.toLocaleString() : "Pågående"} (${(duration / 60).toFixed(2)} h)</span>
+            <span>${start.toLocaleString()} - ${end ? end.toLocaleString() : "Pågående"} (${formatTime(duration)})</span>
             <button class="remove-btn text-white hover:text-red-500" data-index="${index}">×</button>
         `;
 
         workLog.appendChild(listItem);
     });
 
-    totalHoursEl.textContent = (totalMinutes / 60).toFixed(2);
+    totalHoursEl.textContent = formatTime(totalMinutes);
+
+    if (isWorking && workSessions.length === 0) {
+        isWorking = false;
+        localStorage.setItem("isWorking", isWorking);
+    }
 
     if (isWorking) {
         stampInBtn.classList.add("hidden");
@@ -103,6 +120,13 @@ function removeSession(event) {
     if (confirm("Är du säker på att du vill ta bort denna tid?")) {
         workSessions.splice(index, 1);
         localStorage.setItem("workSessions", JSON.stringify(workSessions));
+        
+        if (workSessions.length === 0) {
+            isWorking = false;
+            localStorage.setItem("isWorking", isWorking);
+            localStorage.removeItem("startTime");
+        }
+        
         updateUI();
     }
 }
