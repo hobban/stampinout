@@ -1,64 +1,175 @@
-
 body {
-    background-color: rgb(23, 23, 23) !important;
-    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    font-family: 'Inter', sans-serif;
+}
+
+.container {
+    height: 100vh; 
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 1rem;
+    background: rgba(0, 0, 0, 0.8); 
 }
 
-
-h1 {
-    font-size: 2rem !important;
-    font-weight: bold;
-    color: white !important;
-    margin-bottom: 1rem !important;
-    text-align: center;
+@media (max-width: 768px) {
+    .container {
+        height: 100vh; 
+        overflow: hidden; 
+    }
 }
 
-
-.max-w-lg {
-    background-color: rgb(33, 33, 33) !important;
-    padding: 2rem;
+.glass-effect {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
     border-radius: 12px;
-    width: 90%;
-    max-width: 500px;
-    color: white !important;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 40px;
+    height: 20px;
+}
 
-.btn-large {
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.text-neon {
+    color: rgb(228, 228, 228);
+}
+
+@media (max-width: 768px) {
+    #clock, #date {
+        display: none;
+    }
+}
+
+.flex.justify-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#stampInBtn, #stampOutBtn {
+    width: 12rem;  /* 48 i Tailwind = 12rem */
+    height: 3.5rem;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #555;
+    border-radius: 20px;
+    transition: .4s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 14px;
+    width: 14px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    border-radius: 50%;
+    transition: .4s;
+}
+
+input:checked + .slider {
+    background-color: #4CAF50;
+}
+
+input:checked + .slider:before {
+    transform: translateX(20px);
+}
+
+/* Knappstil */
+.btn {
     width: 100%;
-    font-size: 1.2rem;
+    padding: 12px;
+    border-radius: 8px;
     font-weight: bold;
     color: white;
-    border-radius: 14px;
-    padding: 16px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    transition: all 0.2s ease-in-out;
 }
 
+/* Runda knappar */
 .btn-circle {
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    font-size: 1.2rem;
-    font-weight: bold;
     display: flex;
     align-items: center;
     justify-content: center;
-    text-align: center;
-    line-height: 1;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
 }
 
-#workLog {
-    max-height: 60vh;
-    overflow-y: auto;
-    width: 100%;
+.btn:active {
+    transform: scale(0.95);
+    transition: transform 0.1s;
+}
+
+#workLog::-webkit-scrollbar {
+    width: 6px;
+}
+
+#workLog::-webkit-scrollbar-track {
+    background: #444;
+    border-radius: 3px;
+}
+
+#workLog::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 3px;
+}
+
+#workLog::-webkit-scrollbar-thumb:hover {
+    background: #bbb;
+}
+
+.dark {
+    background-color: #f8f8f8;
+    color: #222;
+}
+
+.dark .bg-gray-900 {
+    background-color: #f8f8f8;
+}
+
+.dark .bg-gray-800 {
+    background-color: #e0e0e0;
+}
+
+.dark .bg-gray-700 {
+    background-color: #d0d0d0;
+}
+
+.dark .text-white {
+    color: #222;
+}
+
+.dark .text-gray-400 {
+    color: #555;
+}
+
+.dark .text-gray-300 {
+    color: #666;
+}
+
+#settingsPanel {
+    z-index: 50; /* Gör att menyn ligger över allt annat */
 }

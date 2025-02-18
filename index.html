@@ -6,18 +6,56 @@
     <title>Stämpelklocka</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.4.0"></script>
 </head>
-<body class="bg-gray-100 h-screen flex items-center justify-center">
-    <div class="w-full max-w-lg bg-white p-6 rounded-lg shadow-md text-center">
+<body class="bg-gradient-to-b from-gray-900 to-gray-800 h-screen flex items-center justify-center">
+    <div class="absolute top-4 flex flex-col items-center w-full">
+        <div id="clock" class="text-3xl font-bold text-neon"></div>
+        <div id="date" class="text-lg text-gray-300"></div>
+    </div>
+    
+    <div class="relative w-full max-w-lg bg-gray-800 p-6 rounded-lg shadow-md text-center text-white">
         <h1 class="text-2xl font-bold mb-6">Stämpelklocka</h1>
 
-        <div class="space-y-4">
-            <button id="stampInBtn" class="btn-large bg-green-500 hover:bg-green-600">Stämpla in</button>
-            <button id="stampOutBtn" class="btn-large bg-red-500 hover:bg-red-600 hidden">Stämpla ut</button>
+        <button id="settingsBtn" class="absolute top-3 right-3 p-2 bg-gray-700 rounded-full hover:bg-gray-600">
+            ⚙️
+        </button>
+        
+        <div id="settingsPanel" class="hidden absolute top-12 right-3 bg-gray-800 p-4 rounded-lg shadow-lg z-50">
+            <h3 class="text-lg font-semibold mb-2">Inställningar</h3>
+            <div class="flex justify-between items-center mb-2">
+                <span>Visa timlön</span>
+                <label class="switch">
+                    <input type="checkbox" id="toggleWage">
+                    <span class="slider"></span>
+                </label>
+            </div>
+            <div class="flex justify-between items-center">
+                <span>Visa lunchräknare</span>
+                <label class="switch">
+                    <input type="checkbox" id="toggleLunch">
+                    <span class="slider"></span>
+                </label>
+            </div>
+        </div>
+        
+        <div id="stampButtons" class="flex justify-center mt-6 relative h-14">
+            <button id="stampInBtn" class="absolute w-48 h-full bg-green-500 hover:bg-green-600 rounded-lg text-white font-bold transition-all">
+                Stämpla in
+            </button>
+            <button id="stampOutBtn" class="absolute w-48 h-full bg-red-500 hover:bg-red-600 rounded-lg text-white font-bold transition-all hidden">
+                Stämpla ut
+            </button>
+        </div>
+        
+        <div id="wageSection" class="mt-4 hidden">
+            <h3 class="text-lg font-semibold">Timlön (kr):</h3>
+            <input id="wageInput" type="number" class="w-full p-2 bg-gray-700 text-white rounded text-center border-none">
+            <h3 class="text-lg font-semibold mt-2">Total lön: <span id="totalWage">0</span> kr</h3>
         </div>
 
-        <!-- Lunchräknare -->
-        <div class="mt-4">
+        <div id="lunchSection" class="mt-4 hidden">
             <h3 class="text-lg font-semibold">Lunchräknare:</h3>
             <div class="flex justify-center items-center space-x-3">
                 <button id="decreaseLunchBtn" class="btn-circle bg-red-500 hover:bg-red-600">-</button>
@@ -27,9 +65,8 @@
         </div>
 
         <h2 class="text-lg font-semibold mt-6">Arbetade pass:</h2>
-        <ul id="workLog" class="mt-2 space-y-2"></ul>
-
-        <h3 class="text-lg font-semibold mt-6">Totalt arbetade timmar: <span id="totalHours">0</span> h</h3>
+        <ul id="workLog" class="mt-2 space-y-2 max-h-60 overflow-y-auto"></ul>
+        <h3 class="text-lg font-semibold mt-6">Totalt arbetade timmar: <span id="totalHours">0 min</span></h3>
     </div>
 
     <script src="script.js"></script>
